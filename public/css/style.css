@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #fff;
+  --muted: #666;
+  --line: #ccc;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e6e6e6;
+    --bg: #161616;
+    --muted: #999;
+    --line: #444;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  font:
+    16px / 1.5 system-ui,
+    sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+h1 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+p {
+  margin: 8px 0;
+}
+#screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+#screen video,
+#screen canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#video-status {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 4px 8px;
+  color: #fff;
+}
+#video-status:empty {
+  display: none;
+}
+form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+input,
+button {
+  font: inherit;
+  padding: 4px 10px;
+}
+#turn {
+  font-variant-numeric: tabular-nums;
+  font-weight: bold;
+}
+#help,
+#connection,
+footer {
+  color: var(--muted);
+  font-size: 14px;
+}
+footer {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+}
+a {
+  color: inherit;
+}
+[hidden] {
+  display: none !important;
+}

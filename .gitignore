@@ -1,0 +1,18 @@
+# Dependencies and local builds (vendor: chiaki-ng, MediaMTX)
+node_modules/
+vendor/
+
+# Secrets and local settings: never commit these
+.env
+.env.*
+*.env
+!.env.example
+
+# Runtime state (the saved line) and logs
+state/
+*.log
+
+# OS and editor noise
+.DS_Store
+.idea/
+.vscode/

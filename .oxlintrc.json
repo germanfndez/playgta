@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "node", "promise"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "perf": "error"
+  },
+  "options": {
+    "typeAware": true,
+    "denyWarnings": true,
+    "reportUnusedDisableDirectives": "error"
+  },
+  "env": {
+    "es2024": true,
+    "node": true
+  },
+  "ignorePatterns": ["chiaki/**/*.patch"],
+  "rules": {
+    // Casts narrow already-validated JSON, caught errors and node:* types; tsc strict guards the rest.
+    "typescript/no-unsafe-type-assertion": "off",
+    // Small helpers stay next to their only caller; hoisting them hurts readability.
+    "unicorn/consistent-function-scoping": "off",
+    // Awaits in loops here are deliberate: render/poll loops and ordered test requests.
+    "eslint/no-await-in-loop": "off",
+    // Names are cut by code point on purpose, matching the documented length limits.
+    "typescript/no-misused-spread": "off",
+    // Name sanitizers match control characters on purpose to strip them.
+    "eslint/no-control-regex": "off",
+    // then() callbacks here only run side effects; forcing a return value adds noise.
+    "promise/always-return": "off"
+  },
+  "overrides": [
+    {
+      "files": ["public/js/**/*.js"],
+      "env": { "browser": true, "node": false },
+      "rules": {
+        // Plain browser JS has no annotations, so inferred literal types (e.g. `null`) give false positives.
+        "typescript/restrict-template-expressions": "off"
+      }
+    }
+  ]
+}
